@@ -13,6 +13,23 @@ export default createSchema({
 	types: schemaTypes.concat([
 		/* Your types here! */
 		{
+			name: 'author',
+			type: 'document',
+			title: 'Author',
+			fields: [
+				{
+					name: 'name',
+					title: 'Name',
+					type: 'string',
+				},
+				{
+					name: 'avatar',
+					title: 'Avatar',
+					type: 'image',
+				},
+			],
+		},
+		{
 			name: 'blog',
 			type: 'document',
 			title: 'Blog',
@@ -21,6 +38,7 @@ export default createSchema({
 					name: 'title',
 					type: 'string',
 					title: 'Title',
+					validation: (Rule) => Rule.required().min(8).max(64),
 				},
 				{
 					name: 'subtitle',
@@ -28,9 +46,80 @@ export default createSchema({
 					title: 'Subtitle',
 				},
 				{
+					name: 'coverImage',
+					title: 'Cover Image',
+					type: 'image',
+					options: {
+						hotspot: true,
+					},
+					fields: [
+						{
+							type: 'text',
+							name: 'alt',
+							title: 'Description',
+						},
+					],
+				},
+				{
+					name: 'content',
+					title: 'Content',
+					type: 'array',
+					of: [
+						{
+							type: 'block',
+						},
+						{
+							type: 'image',
+							fields: [
+								{
+									title: 'Position',
+									name: 'position',
+									type: 'string',
+									options: {
+										list: [
+											{ title: 'Center', value: 'center' },
+											{ title: 'Left', value: 'left' },
+											{ title: 'Right', value: 'right' },
+										],
+										layout: 'radio',
+										isHighlighted: true,
+									},
+								},
+								{
+									type: 'text',
+									name: 'alt',
+									title: 'Description',
+									options: {
+										isHighlighted: true,
+									},
+								},
+							],
+							options: {
+								hotspot: true,
+							},
+						},
+						{
+							type: 'code',
+						},
+					],
+				},
+				{
+					name: 'date',
+					title: 'Date',
+					type: 'datetime',
+					validation: (Rule) => Rule.required(),
+				},
+				{
+					name: 'author',
+					title: 'Author',
+					type: 'reference',
+					to: [{ type: 'author' }],
+				},
+				{
 					name: 'slug',
 					type: 'slug',
 					title: 'Slug',
+					validation: (Rule) => Rule.required(),
 				},
 			],
 		},
