@@ -119,10 +119,10 @@ export default createSchema({
 					to: [{ type: 'author' }],
 				},
 				{
-					name: 'categories',
-					title: 'Categories',
-					type: 'array',
-					of: [{ type: 'reference', to: { type: 'category' } }],
+					name: 'category',
+					title: 'Category',
+					type: 'reference',
+					to: [{ type: 'category' }],
 				},
 				{
 					name: 'slug',
