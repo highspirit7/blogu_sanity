@@ -123,6 +123,7 @@ export default createSchema({
 					title: 'Category',
 					type: 'reference',
 					to: [{ type: 'category' }],
+					validation: (Rule) => Rule.required(),
 				},
 				{
 					name: 'slug',
