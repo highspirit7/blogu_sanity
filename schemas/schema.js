@@ -61,7 +61,7 @@ export default createSchema({
 									name: 'style',
 									type: 'string',
 									options: {
-										list: ['break', 'readMore'],
+										list: ['break'],
 									},
 								},
 							],
