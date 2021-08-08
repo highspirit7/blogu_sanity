@@ -4,6 +4,7 @@ import createSchema from 'part:@sanity/base/schema-creator';
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type';
 
+// import break from './break';
 import category from './category';
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -51,6 +52,20 @@ export default createSchema({
 					title: 'Content',
 					type: 'array',
 					of: [
+						{
+							name: 'break',
+							type: 'object',
+							title: 'Break',
+							fields: [
+								{
+									name: 'style',
+									type: 'string',
+									options: {
+										list: ['break', 'readMore'],
+									},
+								},
+							],
+						},
 						{
 							type: 'block',
 							marks: {
